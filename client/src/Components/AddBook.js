@@ -1,6 +1,6 @@
 import React , {useState} from 'react';
 import { useQuery, useMutation } from '@apollo/client';
-import { GET_AUTHORS, ADD_BOOK } from '../Queries/query';
+import { GET_AUTHORS, ADD_BOOK, GET_BOOKS } from '../Queries/query';
 
 function AddNewBook() {
 
@@ -9,7 +9,9 @@ function AddNewBook() {
         genre:"",
         author:"",
     });
-    const [addBook] = useMutation(ADD_BOOK)
+    const [addBook] = useMutation(ADD_BOOK, {
+        refetchQueries: [{ query: GET_BOOKS }],
+      });
 
     const inpurHandler = (e) =>{
         setBookDetail({

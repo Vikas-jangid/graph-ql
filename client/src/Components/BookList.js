@@ -6,7 +6,7 @@ import { GET_BOOKS } from '../Queries/query';
 
 function BookList() {
   const { loading, error, data } =  useQuery(GET_BOOKS);
-  console.log(useQuery(GET_BOOKS))
+
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(  </p>;
   if (data)
