@@ -13,18 +13,28 @@ function AddNewBook() {
         refetchQueries: [{ query: GET_BOOKS }],
       });
 
-    const inpurHandler = (e) =>{
+    const inputHandler = (e) =>{
         setBookDetail({
            ...bookDetail,[e.target.name]:e.target.value
         })
-        console.log(bookDetail)
     }
 
     const formSubmit = () => {
+        let name = document.getElementById("#name");
+        let genre = document.getElementById("#genre");
+        let author = document.getElementById("#author");
+        if( name === null){
+            alert("Name fields needs to be filled.")
+        }else if( genre === null){
+            alert("Genre fields needs to be filled.")
+        }else if( author === null){
+            alert("author fields needs to be filled.")
+        }else{
         console.log(bookDetail, "after book submit");
         addBook({
             variables:bookDetail
         })
+    }
     }
 
 
@@ -37,15 +47,15 @@ function AddNewBook() {
             <form id="add-book">
                 <div className='field' style={{padding:"10px"}}>
                     <label>Book Name:</label>
-                    <input type="text" name='name' onChange={inpurHandler} value={bookDetail.name}/>
+                    <input type="text" name='name' id="name" onChange={inputHandler} value={bookDetail.name}/>
                 </div>
                 <div className='field' style={{padding:"10px"}}>
                     <label>Genre:</label>
-                    <input type="text" name='genre' onChange={inpurHandler} value={bookDetail.genre}/>
+                    <input type="text" name='genre' id="genre" onChange={inputHandler} value={bookDetail.genre}/>
                 </div>
                 <div className='field' style={{padding:"10px"}}>
                 <label>Author:</label>
-                <select name='author' onChange={inpurHandler} value={bookDetail.author}>
+                <select name='author' id="author" onChange={inputHandler} value={bookDetail.author}>
                     {data.authors.map(author=>{
                         return <>
                         <option key={author?.id} >
@@ -56,7 +66,7 @@ function AddNewBook() {
                 </select>
                 </div>
                 <div className='field' style={{padding:"10px"}}>
-                 <button type="button" value="Submit" onClick={formSubmit}>Add Book</button>
+                 <button type="button" value="Submit" onClick={formSubmit}>+</button>
                 </div>
             </form>
         </>
