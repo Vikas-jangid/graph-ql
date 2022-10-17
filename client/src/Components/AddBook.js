@@ -20,9 +20,10 @@ function AddNewBook() {
     }
 
     const formSubmit = () => {
-        let name = document.getElementById("#name");
-        let genre = document.getElementById("#genre");
-        let author = document.getElementById("#author");
+
+        let name = bookDetail.name;
+        let genre = bookDetail.genre;
+        let author = bookDetail.author;
         if( name === null){
             alert("Name fields needs to be filled.")
         }else if( genre === null){
@@ -41,7 +42,7 @@ function AddNewBook() {
     const { loading, error, data } =  useQuery(GET_AUTHORS);
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error :(</p>;
-    if (data) 
+    if (data)
     return(
         <>
             <form id="add-book">
@@ -58,7 +59,7 @@ function AddNewBook() {
                 <select name='author' id="author" onChange={inputHandler} value={bookDetail.author}>
                     {data.authors.map(author=>{
                         return <>
-                        <option key={author?.id} >
+                        <option key={author.id} value={author.id}>
                             {author.name}
                         </option>
                         </>
@@ -71,7 +72,7 @@ function AddNewBook() {
             </form>
         </>
     )
+
 }
-  
+
 export default AddNewBook;
-  
