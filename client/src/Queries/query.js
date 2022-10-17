@@ -1,7 +1,7 @@
 import  {gql} from '@apollo/client';
 // import bookDetail from "../Components/AddBook.js"
 
-export const GET_AUTHORS = gql` 
+export const GET_AUTHORS = gql`
 query GetAuthors {
   authors{
     name,
@@ -43,15 +43,13 @@ mutation addBook($name:String!, $genre:String!, $author:String!) {
 
 export const DELETE_BOOK = gql`
 mutation deleteBook($id:ID!){
-  book(id:$id){
-    id,
-    name,
-    genre
+  deleteBook(id:$id){
+    id
   }
 }
 `
 
-export const GET_BOOKS = gql` 
+export const GET_BOOKS = gql`
 query GetBooks {
   books{
     id
